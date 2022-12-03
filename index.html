@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+    }
+    img {
+        max-width: 50vw;
+    }
+</style>
+</head>
+<body>
+    
+<label for="numbers">Numbers:</label>
+<input type="text" id="numbers">
+<button class="go">Go</button>
+<br/><br/>
+<button class="flip">Flip</button>
+
+<div class="row">
+    <div class="col left">
+        <span></span>
+        <img>
+        <span></span>
+        <img>
+        <span></span>
+        <img>
+    </div>
+    <div class="col right">
+        <span></span>
+        <img>
+        <span></span>
+        <img>
+        <span></span>
+        <img>
+    </div>
+</div>
+<script>
+    const NUM_NAME_MAP = {
+        1: "Team Werbenjagermanjensen - Michael W.",
+        6: "ELMO - Branden M, Joseph A",
+        11: "Viper in a Can - Panav P, Julien A, Jean A. ",
+        12: "The Attacking Armadillos - Isaiah D, Nicolas S, Tyler M.",
+        16: "The Even Spleen - Erin, Erik, Atlas",
+        20: "Millenium Falcons - TBD",
+        21: "Brick - TBD",
+        24: "Electron Robotics - Jack F, Douglas H, Sid R, Twyla O, Allison Z.",
+        25: "Boned - Jacoob L, Alex N, Garrett D, Ekansh B.",
+        26: "cupcake_445 - Jacob O, Safyaan Y, Matthew S, Holden H.",
+        27: "Low Tide - Connor B.",
+        28: "Eagles - Anubhav H.",
+        29: "Nebula - Ethan M, Ben H.",
+        30: "254n’t - Grayson A.",
+        31: "Feminine Fusion - Lynne P, JoAnne A, Lani A, Jackie M, Aysha A.",
+        32: "Zebramites - Christopher H, Ben G.",
+        33: "Seriously Syrian - Rayyan D, Vinay N.",
+        34: "Third Weird - TBD",
+        35: "Triple Threat - TBD",
+        36: "DynamicDuo - Shane T, Courtney T.",
+        38: "OwO - Alek F, Justin M, Iris, Dominic, Isaiah.",
+        39: "Cobra in a Box - Panav P, Jean A",
+    }
+    let flip = false;
+    $(".flip").click(() => {
+        if ($(".right").css("order") == "-1") $(".right").css("order", "");
+        else $(".right").css("order", "-1");
+    });
+    $(".go").click(() => {
+        $("img").each((i, e) => {
+            let nums = $("#numbers").val().split(" ");
+            $(e).attr("src", nums[i] + ".jpg");
+        });
+        $("span").each((i, e) => {
+            let nums = $("#numbers").val().split(" ");
+            $(e).text(nums[i] + " " + NUM_NAME_MAP[nums[i]]);
+        });
+    });
+</script>
+</body>
+</html>
